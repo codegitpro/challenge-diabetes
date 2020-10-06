@@ -1,0 +1,16 @@
+{
+  "name": "center-frontend-code-project",
+  "version": "0.1.0",
+  "author": "Center Health Inc",
+  "private": true,
+  "browserslist": [
+    "> 1%",
+    "last 4 versions"
+  ],
+  "dependencies": {
+    "angular": "1.8.0",
+    "moment": "2.29.0",
+    "normalize.css": "8.0.1"
+  },
+  "devDependencies": {}
+}
