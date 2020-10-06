@@ -1,4 +1,4 @@
-Center Health Front-end Code Project: Diabetes Mini-Dashboard
+Front-end Code Project: Diabetes Mini-Dashboard
 ====================================
 
 Welcome to the front-end code exercise for Center Health! Your task is to implement a simple dashboard showing a few diabetes-related statistics, similar to the Center Health webapp at https://www.center.health (please create an account to access the dashboard!)
