@@ -4,7 +4,7 @@ angular.module('app', []).controller('appController', function ($scope) {
 
   var ctrl = this;
 
-  var DEMO_EVENTS = [
+  const DEMO_EVENTS = [
     { value: 100, time: moment() },
     { value: 155, time: moment() },
     { value: 83, time: moment() },
@@ -22,7 +22,9 @@ angular.module('app', []).controller('appController', function ($scope) {
   // Add your AngularJS controller logic here
 
   // --------------------------------------------
+  
   $scope.today = moment();
+  $scope.timeFormat = "ddd, D MMM YYYY"
 
   $scope.eventAverge = 0;
   $scope.eventCount = 0;
@@ -33,61 +35,56 @@ angular.module('app', []).controller('appController', function ($scope) {
   $scope.prevPercent = 0;
 
   //***************************************************/
-  $scope.getValues = function(){    
-    var eventList = [];
-    for (let i=0; i< DEMO_EVENTS.length; i++){
-      if(DEMO_EVENTS[i].time.date() === $scope.today.date() && DEMO_EVENTS[i].time.month() === $scope.today.month() ){
-        eventList.push(DEMO_EVENTS[i].value);
-      }
-    }
+  $scope.getFormmatedDateString = function(date) {
+    return date.format($scope.timeFormat)
+  } 
+
+  $scope.getValues = function(curDate){    
+    const eventList = DEMO_EVENTS.reduce((t, e) => 
+      $scope.getFormmatedDateString(e.time) === $scope.getFormmatedDateString(curDate)? [...t, e.value] : t
+    , []);
    
-    let  eventAverge = 0;
-    let  trueCount = 0;
+    let eventAverge = 0,
+        trueCount = 0,
+        eventPercent = 0;
+    
     if(eventList.length !==0 ){
-      for (let i=0; i< eventList.length; i++){
-        eventAverge += eventList[i];
-        if(eventList[i] >= 70 && eventList[i] <= 180)
-        {
-          trueCount += 1;
-        }
-      }
-      eventAverge /= eventList.length ;
+      trueCount = eventList.filter(e => e >= 70 && e <= 180).length 
+      eventAverge = eventList.reduce((a,b) => a + b, 0) / eventList.length
     }
   
     // --------------------------------------------
   
     $scope.eventAverge = Math.round(eventAverge);
     $scope.eventCount = eventList.length;
-    if(eventList.length === 0) $scope.eventPercent = 0;
-    else $scope.eventPercent = Math.round(trueCount * 100 / eventList.length);
+    $scope.eventPercent = eventList.length ? Math.round(trueCount * 100 / eventList.length) : eventPercent;
   }
 
-  $scope.getValues();
+  $scope.getValues($scope.today);
 
 
+  $scope.savePrev = function() {
+    [$scope.prevAverge, $scope.prevCount, $scope.prevPercent] = [$scope.eventAverge, $scope.eventCount, $scope.eventPercent]
+  }
   
  //***************************************************/
-  $scope.prevDate = function () {
-    $scope.prevAverge = $scope.eventAverge;
-    $scope.prevCount = $scope.eventCount;
-    $scope.prevPercent = $scope.eventPercent;
-
-    $scope.today = $scope.today.subtract(1, 'days');
-    $scope.getValues();
-  }
-
-  //***************************************************/
-  $scope.nextDate = function () {
-    $scope.prevAverge = $scope.eventAverge;
-    $scope.prevCount = $scope.eventCount;
-    $scope.prevPercent = $scope.eventPercent;
-
-    $scope.today = $scope.today.add(1, 'days');
-    $scope.getValues();
+  $scope.handleDate = function (type) {
+    
+    if(type === 'next') {
+      $scope.today = $scope.today.add(1, 'days');
+    } else if(type === 'prev') {
+      $scope.today = $scope.today.subtract(1, 'days');
+    } else {
+      console.log("type error!")
+      return
+    }
+    $scope.savePrev();
+    $scope.getValues($scope.today);
+    
   }
 
   //***************************************************/
   $scope.getCurrentFormattedDate = function () {
-    return $scope.today.format("ddd, D MMM YYYY");
+    return $scope.getFormmatedDateString($scope.today);
   }
 });

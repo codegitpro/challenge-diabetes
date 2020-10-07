@@ -32,8 +32,8 @@
     <div class="content">
       <div class="date-picker">
         <span class="date">{{getCurrentFormattedDate()}}</span>
-        <span class="arrow left-arrow" ng-click="prevDate()"></span>
-        <span class="arrow right-arrow" ng-click="nextDate()"></span>
+        <span class="arrow left-arrow" ng-click="handleDate('prev')"></span>
+        <span class="arrow right-arrow" ng-click="handleDate('next')"></span>
       </div>
 
       <div class="card-wrapper fnt-18">

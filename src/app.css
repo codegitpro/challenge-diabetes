@@ -40,8 +40,9 @@ html{
 }
 
 .content {
-  padding: 60px;
- 
+  margin: auto;
+  margin-top: 50px;
+  width: 80%;
 }
 
 .content .date-picker {
@@ -81,10 +82,13 @@ html{
 .content .card-wrapper{
   margin-top: 30px;
   display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .content .card-wrapper .card{
-  width: 400px;
+  width: 32%;
   height: 120px;
   border-radius: 12px;
   background: white;
@@ -93,6 +97,15 @@ html{
   margin-top: 10px;
   margin-right: 10px;
   box-shadow: 0px 2px 2px 1px #00000021
+}
+
+@media (max-width: 768px) {
+  .content .card-wrapper {
+    flex-direction: column;
+  }
+  .content .card-wrapper .card{ 
+    width: 100%;
+  }
 }
 
 .content .card-wrapper .card .prev-day{
