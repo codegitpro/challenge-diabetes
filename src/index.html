@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="lib/normalize.css" />
   <link rel="stylesheet" href="fonts.css" />
   <link rel="stylesheet" href="app.css" />
-
 </head>
 
 <body ng-app="app">
@@ -26,8 +25,85 @@
       ADD YOUR HTML HERE
     -->
 
-    {{ ctrl.helloWorld }}
+    <div class="app-header">
+      <img class="logo" src="assets/images/icon-80x80-light.png"></span>
+      <span class="title">Dashboard</span>
+    </div>
+    <div class="content">
+      <div class="date-picker">
+        <span class="date">{{getCurrentFormattedDate()}}</span>
+        <span class="arrow left-arrow" ng-click="prevDate()"></span>
+        <span class="arrow right-arrow" ng-click="nextDate()"></span>
+      </div>
 
+      <div class="card-wrapper fnt-18">
+        <!-- TOTAL BLOOD CARD -->
+        <div class="card">
+            <div class="card-header">
+              <span class="card-icon bubble"></span>
+              <span>Total blood sugar events</span>
+            </div>
+            <div class="card-content">
+              <div class="event-panel" ng-if="eventCount===0">
+                Not enough events
+              </div>
+
+              <div class="event-panel" ng-if="eventCount!==0">
+                <span class="point-icon-B"></span>
+                <span class="fnt-38">&nbsp;{{eventCount}}&nbsp;</span>
+                <span class="event">events</span>
+              </div>             
+            </div>
+            <div class="prev-day fnt-18_1">Previously day - <span class="fnt-18-B" ng-if="prevCount!==0">{{prevCount}}</span></div>
+        </div>
+        <!-- END TOTAL BLOOD-->
+
+        <!-- AVERAGE BLOOD CARD -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-icon bubble"></span>
+            <span>Average blood sugar</span>
+          </div>
+          <div class="card-content">
+            <div class="event-panel" ng-if="eventCount===0">
+              Not enough events
+            </div>
+
+            <div class="event-panel" ng-if="eventCount!==0">
+              <span class="status-icon down-arrow"></span>
+              <span class="fnt-38">&nbsp;{{eventAverge}}&nbsp;</span>
+              <span class="event">mg/dL</span>
+            </div>            
+          </div>
+          <div class="prev-day fnt-18_1">Previously day - <span class="fnt-18-Y" ng-if="prevCount!==0">{{prevAverge}}</span></div>
+        </div>
+        <!-- END  AVERAGE BLOOD-->
+
+        <!-- EVENT BETWEEN CARD -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-icon bubble"></span>
+            <span>Events between 70 and 180</span>
+          </div>
+          <div class="card-content">
+            <div class="event-panel" ng-if="eventCount===0">
+              Not enough events
+            </div>
+
+            <div class="event-panel" ng-if="eventCount!==0">
+              <span class="point-icon-G"></span>
+              <span class="fnt-38">&nbsp;{{eventPercent}}&nbsp;</span>
+              <span class="event">%</span>
+            </div>             
+          </div>
+          <div class="prev-day fnt-18_1">Previously day-
+            <span class="fnt-18-G" ng-if="prevCount!==0">{{prevPercent}}%</span>
+          </div>
+        </div>
+        <!-- END  EVENT BETWEEN-->
+
+      </div>
+    </div>
   </div>
 
   <!-- Application JavaScript Files-->

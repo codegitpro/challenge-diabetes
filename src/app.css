@@ -11,4 +11,189 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+
 /* Add your CSS here */
+html{
+  background: #f7f7f7;
+}
+
+.app-header {
+  height: 80px;
+  background: linear-gradient(#15b4fe, #41c2f2);
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  font-size: 30px;
+}
+
+.app-header .logo {
+  width: 35px;
+  height: 35px;
+  margin-right: 20px;
+}
+
+.app-header .title {
+  padding-left: 20px;
+  border-left: 1px solid #f0f0f069;
+}
+
+.content {
+  padding: 60px;
+ 
+}
+
+.content .date-picker {
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+}
+
+.content .date-picker .date {
+  color: #505050;
+  width: 300px;
+}
+.content .arrow{
+  background: url(assets/images/arrow-sprite.png);
+  background-size: 20px 84px;
+}
+
+.content .left-arrow {
+  height: 20px;
+  width: 20px;
+  display: block;
+  opacity: 0.3;
+  cursor: pointer;
+  background-position: 0px 105px;
+}
+
+.content .right-arrow {
+  height: 20px;
+  width: 20px;
+  margin-left: 30px;
+  display: block;
+  opacity: 0.3;
+  cursor: pointer;
+  background-position: 0px -105px;
+}
+
+.content .card-wrapper{
+  margin-top: 30px;
+  display: flex;
+}
+
+.content .card-wrapper .card{
+  width: 400px;
+  height: 120px;
+  border-radius: 12px;
+  background: white;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 10px;
+  margin-right: 10px;
+  box-shadow: 0px 2px 2px 1px #00000021
+}
+
+.content .card-wrapper .card .prev-day{
+  float: right;
+}
+
+.fnt-18{
+  font-size: 18px;
+  color: rgb(73, 73, 73);
+  font-weight: 600;
+}
+
+.fnt-18-B{
+  font-size: 18px;
+  color: #1ab2ff;
+  font-weight: 800;
+}
+
+.fnt-18-Y{
+  font-size: 18px;
+  color: #f39e19;
+  font-weight: 800;
+}
+
+.fnt-18-G{
+  font-size: 18px;
+  color: #2ecc71;
+  font-weight: 800;
+}
+
+.fnt-18_1{
+  font-size: 18px;
+  color: rgb(141, 141, 141);
+  font-weight: 600;
+}
+
+.fnt-38{
+  font-size: 38px;
+  color: rgb(73, 73, 73);
+  font-weight: 400;
+}
+
+.content .card-wrapper .card .card-header{
+  display: flex;
+  align-items: center;
+}
+
+.content .card-wrapper .card .card-header .card-icon{
+  background: url(assets/images/event-sprite.png);
+  background-size: 25px 150px;
+}
+
+.content .card-wrapper .card .card-header .bubble{
+  height: 27px;
+  width: 27px;
+  display: block;
+  opacity: 0.2;
+  background-position: 0px 2px
+}
+
+.content .card-wrapper .card .card-content{
+  /* float: right; */
+  margin-top: 5px;
+}
+
+.content .card-wrapper .card .card-content .event-panel{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  line-height: 36px;
+  height: 47px;
+}
+
+.content .card-wrapper .card .card-content .status-icon{
+  background: url(assets/images/status-sprite.png);
+  background-size: 90px 40px;
+}
+
+.content .card-wrapper .card .card-content .down-arrow{
+  height: 21px;
+  width: 22px;
+  display: block;
+  background-position: 0px -20px;
+}
+
+.content .card-wrapper .card .card-content .event-panel .point-icon-B{
+  width: 8px;
+  height: 8px;
+  background: #1ab2ff;
+  display: block;
+  border-radius: 50%;
+}
+
+.content .card-wrapper .card .card-content .event-panel .point-icon-G{
+  width: 8px;
+  height: 8px;
+  background: #2ecc71;
+  display: block;
+  border-radius: 50%;
+}
+
+.content .card-wrapper .card .card-content .event-panel .event{
+  margin-top: 10px;
+}
