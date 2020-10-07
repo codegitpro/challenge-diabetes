@@ -36,8 +36,8 @@ angular.module('app', []).controller('appController', function ($scope) {
 
   //***************************************************/
   $scope.getFormmatedDateString = function(date) {
-    return date.format($scope.timeFormat)
-  } 
+    return date.format($scope.timeFormat);
+  }
 
   $scope.getValues = function(curDate){    
     const eventList = DEMO_EVENTS.reduce((t, e) => 
@@ -49,8 +49,8 @@ angular.module('app', []).controller('appController', function ($scope) {
         eventPercent = 0;
     
     if(eventList.length !==0 ){
-      trueCount = eventList.filter(e => e >= 70 && e <= 180).length 
-      eventAverge = eventList.reduce((a,b) => a + b, 0) / eventList.length
+      trueCount = eventList.filter(e => e >= 70 && e <= 180).length;
+      eventAverge = eventList.reduce((a,b) => a + b, 0) / eventList.length;
     }
   
     // --------------------------------------------
@@ -60,31 +60,32 @@ angular.module('app', []).controller('appController', function ($scope) {
     $scope.eventPercent = eventList.length ? Math.round(trueCount * 100 / eventList.length) : eventPercent;
   }
 
-  $scope.getValues($scope.today);
-
-
   $scope.savePrev = function() {
-    [$scope.prevAverge, $scope.prevCount, $scope.prevPercent] = [$scope.eventAverge, $scope.eventCount, $scope.eventPercent]
+    [$scope.prevAverge, $scope.prevCount, $scope.prevPercent] = [$scope.eventAverge, $scope.eventCount, $scope.eventPercent];
   }
   
  //***************************************************/
   $scope.handleDate = function (type) {
-    
     if(type === 'next') {
       $scope.today = $scope.today.add(1, 'days');
     } else if(type === 'prev') {
       $scope.today = $scope.today.subtract(1, 'days');
     } else {
-      console.log("type error!")
+      console.log("type error!");
       return
     }
     $scope.savePrev();
     $scope.getValues($scope.today);
-    
   }
 
   //***************************************************/
   $scope.getCurrentFormattedDate = function () {
     return $scope.getFormmatedDateString($scope.today);
   }
+
+  $scope.init = function() {
+    $scope.getValues($scope.today);
+  }
+
+  $scope.init();
 });
