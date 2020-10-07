@@ -4,6 +4,7 @@ angular.module('app', []).controller('appController', function ($scope) {
 
   var ctrl = this;
 
+  // fake data for 4 days
   const DEMO_EVENTS = [
     { value: 100, time: moment() },
     { value: 155, time: moment() },
@@ -19,10 +20,7 @@ angular.module('app', []).controller('appController', function ($scope) {
 
   ctrl.helloWorld = 'Hello World!'; // Dashboard welcome message (this can be deleted)
 
-  // Add your AngularJS controller logic here
-
-  // --------------------------------------------
-  
+  // member variables
   $scope.today = moment();
   $scope.timeFormat = "ddd, D MMM YYYY"
 
@@ -34,11 +32,12 @@ angular.module('app', []).controller('appController', function ($scope) {
   $scope.prevCount = 0;
   $scope.prevPercent = 0;
 
-  //***************************************************/
+  // get formatted date from moment
   $scope.getFormmatedDateString = function(date) {
     return date.format($scope.timeFormat);
   }
 
+  // get total, average, percent values
   $scope.getValues = function(curDate){    
     const eventList = DEMO_EVENTS.reduce((t, e) => 
       $scope.getFormmatedDateString(e.time) === $scope.getFormmatedDateString(curDate)? [...t, e.value] : t
@@ -53,36 +52,36 @@ angular.module('app', []).controller('appController', function ($scope) {
       eventAverge = eventList.reduce((a,b) => a + b, 0) / eventList.length;
     }
   
-    // --------------------------------------------
-  
     $scope.eventAverge = Math.round(eventAverge);
     $scope.eventCount = eventList.length;
     $scope.eventPercent = eventList.length ? Math.round(trueCount * 100 / eventList.length) : eventPercent;
   }
 
+  // save previous data before update
   $scope.savePrev = function() {
     [$scope.prevAverge, $scope.prevCount, $scope.prevPercent] = [$scope.eventAverge, $scope.eventCount, $scope.eventPercent];
   }
   
- //***************************************************/
-  $scope.handleDate = function (type) {
-    if(type === 'next') {
+  // update member variables by action type
+  $scope.handleDate = function (actionType) {
+    if(actionType === 'next') {
       $scope.today = $scope.today.add(1, 'days');
-    } else if(type === 'prev') {
+    } else if(actionType === 'prev') {
       $scope.today = $scope.today.subtract(1, 'days');
     } else {
-      console.log("type error!");
+      console.log("actionType error!");
       return
     }
     $scope.savePrev();
     $scope.getValues($scope.today);
   }
 
-  //***************************************************/
+  // get current date
   $scope.getCurrentFormattedDate = function () {
     return $scope.getFormmatedDateString($scope.today);
   }
 
+  // initialize page
   $scope.init = function() {
     $scope.getValues($scope.today);
   }
